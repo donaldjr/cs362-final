@@ -1,6 +1,7 @@
 
 package finalprojectB;
 
+import org.junit.Test;
 import junit.framework.TestCase;
 import org.junit.Test;
 //You can use this as a skeleton for your 3 different test approach
@@ -19,9 +20,9 @@ public class UrlValidatorTest extends TestCase {
    }
 
    
+
    @Test
-   public void testManualTest()
-   {
+   public void testManualTest() {
 
         String[] schemes = { "http", "https" };
         UrlValidator urlValidator = new UrlValidator(schemes);
@@ -29,6 +30,23 @@ public class UrlValidatorTest extends TestCase {
  
    }
 
+   @Test
+   public void test_isValidScheme(){
+        String[] schemes = { "http", "https" };
+        UrlValidator urlValidator = new UrlValidator(schemes);
+        assertTrue(urlValidator.isValidScheme("http"));
+   }
+
+   
+    @Test
+    public void testManualTest_01() {
+
+        
+     UrlValidator urlValidator = new UrlValidator();
+     assertTrue(urlValidator.isValid("ftp://foo.bar.com/"));
+    }
+
+   //this should return true as it is a valid scheme but the assertion fails
    @Test
    public void test_isValidScheme(){
         String[] schemes = { "http", "https" };
