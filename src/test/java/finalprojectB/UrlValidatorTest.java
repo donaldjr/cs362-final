@@ -3,7 +3,7 @@ package finalprojectB;
 
 import org.junit.Test;
 import junit.framework.TestCase;
-
+import org.junit.Test;
 //You can use this as a skeleton for your 3 different test approach
 //It is an optional to use this file, you can generate your own test file(s) to test the target function!
 // Again, it is up to you to use this file or not!
@@ -20,17 +20,23 @@ public class UrlValidatorTest extends TestCase {
    }
 
    
-   //this should return true as the url is valid but it does not
-   @Test
-   public void testManualTest()
-   {
 
-        //
+   @Test
+   public void testManualTest() {
+
         String[] schemes = { "http", "https" };
         UrlValidator urlValidator = new UrlValidator(schemes);
         assertTrue(urlValidator.isValid("http://tech.yahoo.com/rc/desktops/102;_ylt=Ao8yevQHlZ4On0O3ZJGXLEQFLZA5"));
  
    }
+
+   @Test
+   public void test_isValidScheme(){
+        String[] schemes = { "http", "https" };
+        UrlValidator urlValidator = new UrlValidator(schemes);
+        assertTrue(urlValidator.isValidScheme("http"));
+   }
+
    
     @Test
     public void testManualTest_01() {
@@ -50,6 +56,7 @@ public class UrlValidatorTest extends TestCase {
 
    
    
+   @Test
    public void testYourFirstPartition()
    {
 	 //You can use this function to implement your First Partition testing	   
