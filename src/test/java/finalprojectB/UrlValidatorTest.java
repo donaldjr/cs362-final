@@ -24,26 +24,19 @@ public class UrlValidatorTest extends TestCase {
    @Test
    public void testManualTest() {
 
+        //this should return true
         String[] schemes = { "http", "https" };
         UrlValidator urlValidator = new UrlValidator(schemes);
         assertTrue(urlValidator.isValid("http://tech.yahoo.com/rc/desktops/102;_ylt=Ao8yevQHlZ4On0O3ZJGXLEQFLZA5"));
  
    }
 
-   @Test
-   public void test_isValidScheme(){
-        String[] schemes = { "http", "https" };
-        UrlValidator urlValidator = new UrlValidator(schemes);
-        assertTrue(urlValidator.isValidScheme("http"));
-   }
-
-   
     @Test
     public void testManualTest_01() {
 
-        
-     UrlValidator urlValidator = new UrlValidator();
-     assertTrue(urlValidator.isValid("ftp://foo.bar.com/"));
+        //this should return true
+        UrlValidator urlValidator = new UrlValidator();
+        assertTrue(urlValidator.isValid("ftp://foo.bar.com/"));
     }
 
    //this should return true as it is a valid scheme but the assertion fails
