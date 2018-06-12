@@ -61,25 +61,71 @@ public class UrlValidatorTest extends TestCase {
    }
 
    
-   
+
    @Test
-   public void testYourFirstPartition()
+   public void testPartitionScheme()
    {
-     //You can use this function to implement your First Partition testing	
+       String[] schemes = { "http", "https" };
+       UrlValidator urlValidator1 = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES); //'all'
+       UrlValidator urlValidator2 = new UrlValidator(schemes); //some
 
+       // commented out asserts cause:
+       //java.lang.ExceptionInInitializerError
+       //   at finalprojectB.UrlValidator.isValidAuthority(UrlValidator.java:393)
+       //   at finalprojectB.UrlValidator.isValid(UrlValidator.java:327)
 
+       //assertTrue(urlValidator2.isValid("http://foo.com"));
+       //assertTrue(urlValidator2.isValid("https://foo.com"));
+       //assertTrue(urlValidator1.isValid("ftp://foo.com"));
+       assertTrue(urlValidator1.isValid("http://foo.com"));
+       //assertTrue(urlValidator1.isValid("https://foo.com"));
+
+       //assertFalse(urlValidator1.isValid("file://foo.com"));
+       //assertFalse(urlValidator1.isValid("bad://foo.com"));
+       assertFalse(urlValidator2.isValid("file://foo.com"));
+       assertFalse(urlValidator2.isValid("bad://foo.com"));
    }
-   
-   public void testYourSecondPartition(){
-		 //You can use this function to implement your Second Partition testing	   
-
-   }
-   //You need to create more test cases for your Partitions if you need to 
    @Test
-   public void testIsValid()
-   {
-    // You can use this function for programming based testing
-  
+   public void testPartitionAuthority(){
+       UrlValidator urlValidator1 = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES); //'all'
+      // assertTrue(urlValidator1.isValid("http://user:pass@foo.com:8080")); //should work
+       assertTrue(urlValidator1.isValid("http://255.255.255.255"));
+       //assertTrue(urlValidator1.isValid("http://255.255.255.255:8080")); //should work
+      // assertTrue(urlValidator1.isValid("http://user:pass@255.255.255")); // should work
+   }
+    @Test
+    public void testPartitionPath(){
+        //You can use this function to implement your Second Partition testing
+        UrlValidator urlValidator1 = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES); //'all'
+        assertTrue(urlValidator1.isValid("http://foo.com/file"));
+       // assertTrue(urlValidator1.isValid("http://foo.com/folder/file")); should work
+        assertFalse(urlValidator1.isValid("http://foo.com//file"));
+    }
+    @Test
+    public void testPartitionQuery(){
+        //You can use this function to implement your Second Partition testing
+        UrlValidator urlValidator1 = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES); //'all'
+        assertTrue(urlValidator1.isValid("http://foo.com/place?key1=value1&key2=value2"));
+        assertTrue(urlValidator1.isValid("http://foo.com/place?key1=value1;key2=value2"));
+        assertTrue(urlValidator1.isValid("http://foo.com/place?key1=value1;key2="));
+        assertTrue(urlValidator1.isValid("http://foo.com/place?=value1"));
+    }
+    @Test
+    public void testPartitionFragment(){
+        //You can use this function to implement your Second Partition testing
+        UrlValidator urlValidator1 = new UrlValidator(UrlValidator.ALLOW_ALL_SCHEMES); //'all'
+        assertTrue(urlValidator1.isValid("http://foo.com#test"));
+        assertTrue(urlValidator1.isValid("http://foo.com/file.html#test"));
+
+    }
+
+
+
+
+   @Test
+   public void testIsValid() {
+       // You can use this function for programming based testing
+   }
 
 
 }
